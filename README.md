@@ -69,3 +69,24 @@ The reported primary metric is test ROC AUC. The code also reports false positiv
 | Small CNN | 0.662 | 0.931 |
 
 These results concern this subset of BOSSbase and this particular random-position LSB replacement procedure. A detector's score is an indicator for further examination, not proof that an arbitrary image contains hidden data.
+
+## Saved results
+
+CNN test predictions and best-validation weights for both payloads are in `results/cnn_results.zip` (`cnn_0p1_*` and `cnn_0p4_*`). The figures used in the report are in `results/figures/` and Table 3 is in `results/results_table.csv`. The CNN test AUCs in the table above can be recomputed from the prediction CSVs: 0.662 at 0.1 bpp and 0.931 at 0.4 bpp. The logistic regression and simplified RS scores are written by `Terminal.py` into `BOSSbase_generated_500/`.
+
+## What this adds
+
+The methods themselves are not new. The contribution is the evaluation design:
+
+- Each original image and both of its stego copies stay in the same train, validation or test split, so no photograph appears in both training and testing.
+- Every file is traceable through seeds, SHA-256 hashes and recovered-bit checks on the generated stego images.
+- A statistical detector (simplified RS) and two learned detectors (logistic regression and a small CNN) are compared at identical payloads (0.1 and 0.4 bpp), using AUC plus false positives and detections at stated thresholds. The logistic regression threshold differs from the RS and CNN rule, and this is disclosed.
+
+## Reproducing the main result
+
+1. Download BOSSbase 1.01 and run `python3 Terminal.py --desktop ~/Desktop --stage all` (see "Run the local pipeline").
+2. Upload the resulting `BOSSbase_project_data.zip` to `DF (2).ipynb` in Colab and run the notebook (see "Run the CNN notebook in Colab").
+3. The headline result is that the simplified RS statistic (test AUC 0.977 at 0.1 bpp and 0.999 at 0.4 bpp) outperforms the CNN (0.662 and 0.931) and logistic regression (0.540 and 0.691) at both payloads.
+
+The 0.1 bpp CNN may not reproduce exactly. Its training in the saved notebook was irregular and the model learned little at that payload.
+
