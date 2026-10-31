@@ -72,7 +72,7 @@ These results concern this subset of BOSSbase and this particular random-positio
 
 ## Saved results
 
-CNN test predictions and best-validation weights for both payloads are in `results/cnn_results.zip` (`cnn_0p1_*` and `cnn_0p4_*`). The figures used in the report are in `results/figures/` and Table 3 is in `results/results_table.csv`. The CNN test AUCs in the table above can be recomputed from the prediction CSVs: 0.662 at 0.1 bpp and 0.931 at 0.4 bpp. The logistic regression and simplified RS scores are written by `Terminal.py` into `BOSSbase_generated_500/`.
+CNN test predictions and best-validation weights for both payloads are in `results/cnn_results.zip` (`cnn_0p1_*` and `cnn_0p4_*`). The CNN test AUCs in the table above can be recomputed from the prediction CSVs: 0.662 at 0.1 bpp and 0.931 at 0.4 bpp. The logistic regression and simplified RS scores are written by `Terminal.py` into `BOSSbase_generated_500/`.
 
 ## What this adds
 
